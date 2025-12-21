@@ -1,0 +1,6 @@
+project skeleton :
+  backend:run.py
+                simple_site.py
+                __init__.py
+                routes.py
+                models.py
