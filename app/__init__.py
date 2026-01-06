@@ -3,6 +3,7 @@ from app.extensions import db
 from flask_sqlalchemy import SQLAlchemy
 from apscheduler.schedulers.background import BackgroundScheduler
 from app.tasks import scrape_and_store
+from app.scheduler import start_scheduler
 
 db = SQLAlchemy()
 
@@ -37,6 +38,4 @@ def start_scheduler(app):
     )
     scheduler.start()
 
-
-
-    
+    start_scheduler()    

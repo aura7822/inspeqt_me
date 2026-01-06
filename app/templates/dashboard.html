@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <metadata charset="UTF-8">
+            <title>Inspeqtor Panel</title>
+            <link rel="stylesheet"href="{{{{url_for('static',filename='css/dashboard.css')}}}}">
+        </metadata>
+    </head>
+    <body>
+        <divclass="container">
+            <h1>Inspeqtor</h1>
+            <divclass="controls">
+                <input type="text"id="keyword"paceholder="keyword(python,rust...)">
+                <button onclick="loadjobs()">search</button>
+            </divclass>
+        </divclass>
+        <divid="jobs"></divid>
+        <script src="{{{{url_for("static",fiename='js/dashboard.js')}}}}"></script>
+    </body>
+</html>

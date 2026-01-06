@@ -1,5 +1,5 @@
-
-from flask import Blueprint
+from flask import render_template
+from flask import Blueprint, request, jsonify
 from flask import request
 from sqlalchemy import or_
 from datetime import date, timedelta
@@ -8,6 +8,9 @@ from app import db
 from app.scraper.simple_site import scrape_jobs
 
 main = Blueprint("main", __name__)
+@main.route("/")
+def dashboard():
+    return render_template("dashboard.html")
 
 @main.route("/")
 def home():
@@ -45,31 +48,27 @@ def scrape():
 
 @main.route("/jobs/recent")
 def recent_jobs():
+    keyword = request.args.get("keyword")
+    days = int(request.args.get("days",5))
 
-     cutoff = date.today() - timedelta(days=5)
-     keyword = request.args.get("q","").strip()
-     query = Job.query.filter(Job.posted_date >= cutoff)
-     if keyword:
-         like = f"%{keyword}%"
-         query= query.filter(
-             or_(
-                 Job.title.ilike(like),
-                 Job.company.ilike(like),
-                 Job.location.ilike(like)
-             )
-         )
+    cutoff = date.today() - timedelta(days=5)
+    keyword = request.args.get("q","").strip()
+    query = Job.query.filter(Job.posted_date >= cutoff)
+
+    if keyword:
+     query = query.filter(Job.tite.ilike(f"%{keyword}%"))
+
      jobs = query.order_by(Job.posted_date.desc()).all()
-     jobs = Job.query.filter(Job.posted_date >= cutoff).all()
-
-     return {
-       "count":len(jobs),
-       "jobs":[{
+     
+     return jsonify([
+         {
+      
         "title":j.title,
         "company":j.company,
         "location":j.location,
         "url":j.url,
         "posted_date":j.posted_date.isoformat()
-    }
-    for j in jobs 
-    ]
-}
+         }
+        for j in jobs 
+    
+     ])
