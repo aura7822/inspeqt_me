@@ -7,9 +7,9 @@ body{
     width:800px;
     margin:40px auto;
 }
-h1(
+h1{
     color:#58a6ff;
-)
+}
 .controls{
     margin-bottom: 20px;
 }
@@ -27,7 +27,7 @@ button{
     cursor: pointer;
 }
 .job{
-    borer-bottom:1px solid #30363d;
+    border-bottom:1px solid #30363d;
     padding:12px 0;
 }
 .job a{
