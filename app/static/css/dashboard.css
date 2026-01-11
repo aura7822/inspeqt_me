@@ -1,0 +1,36 @@
+body{
+    background:#eaea7f;
+    color:#e6edf3;
+    font-family:monospace;
+}
+.container{
+    width:800px;
+    margin:40px auto;
+}
+h1(
+    color:#58a6ff;
+)
+.controls{
+    margin-bottom: 20px;
+}
+input{
+    padding:8px;
+    background:#161b22;
+    color: #e6edf3;
+    border:1px solid #30363d;
+}
+button{
+    padding:8px 12px;
+    background : #238636;
+    color:white;
+    border: none;
+    cursor: pointer;
+}
+.job{
+    borer-bottom:1px solid #30363d;
+    padding:12px 0;
+}
+.job a{
+    color: #58a6ff;
+    text-decoration:none;
+}
